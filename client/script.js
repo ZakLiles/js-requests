@@ -193,3 +193,16 @@ document.getElementById('query-button').addEventListener('click',queryTest);
 */
 
 // CODE HERE 
+const createFood = (event) => {
+    console.log("clicked food button")
+    let foodInput = document.getElementById('food');
+    let body = {newFood: foodInput.value};
+    axios.post('http://localhost:3000/food',body).then((res) => {
+        console.log(res.data);
+        document.getElementById('add-food-res').textContent = res.data;
+    })
+    .catch((err) => alert(err))
+    event.preventDefault();
+}
+
+document.getElementById('form').addEventListener('submit', createFood)
